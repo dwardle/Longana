@@ -12,22 +12,10 @@ game::~game()
 {
 }
 
-
-void game::createBoneyard()
+void game::startGame()
 {
-	tile nextTile;
-	for(int i = 0; i < 7; i++)
-	{
-		for (int j = i; j < 7; j++)
-		{
-			nextTile.setPips(i, j);
-			boneyard.push_back(nextTile);
-		}
-	}
-}
+	boneYard.createBoneyard();
+	boneYard.shuffleBoneyard();
+	humanPlayer.drawHand(boneYard);
 
-void game::shuffleBoneyard()
-{
-	srand(time(NULL));
-	random_shuffle(boneyard.begin(), boneyard.end());
 }

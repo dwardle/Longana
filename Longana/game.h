@@ -1,5 +1,8 @@
 #pragma once
-#include "tile.h"
+#include"tile.h"
+#include"player.h"
+#include"human.h"
+#include"stock.h"
 #include<vector>
 #include<algorithm>
 #include<time.h>
@@ -11,10 +14,10 @@ class game
 public:
 	game();
 	~game();
-	void createBoneyard();
-	void shuffleBoneyard();
+	void startGame();
 private:
-	vector<tile> boneyard;
+	human humanPlayer;
+	stock boneYard;
 	
 };
 

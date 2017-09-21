@@ -111,23 +111,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="board.cpp" />
-    <ClCompile Include="boardView.cpp" />
     <ClCompile Include="computer.cpp" />
     <ClCompile Include="game.cpp" />
+    <ClCompile Include="hand.cpp" />
     <ClCompile Include="human.cpp" />
+    <ClCompile Include="layout.cpp" />
+    <ClCompile Include="layoutView.cpp" />
     <ClCompile Include="Longana_Main.cpp" />
     <ClCompile Include="player.cpp" />
+    <ClCompile Include="stock.cpp" />
     <ClCompile Include="tile.cpp" />
     <ClCompile Include="tournament.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="board.h" />
-    <ClInclude Include="boardView.h" />
     <ClInclude Include="computer.h" />
     <ClInclude Include="game.h" />
+    <ClInclude Include="hand.h" />
     <ClInclude Include="human.h" />
+    <ClInclude Include="layout.h" />
+    <ClInclude Include="layoutView.h" />
     <ClInclude Include="player.h" />
+    <ClInclude Include="stock.h" />
     <ClInclude Include="tile.h" />
     <ClInclude Include="tournament.h" />
   </ItemGroup>
