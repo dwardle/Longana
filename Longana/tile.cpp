@@ -66,7 +66,7 @@ int tile::getRightPips() const
 	return rightPips;
 }
 
-bool tile::isDouble() const
+bool tile::isDouble()
 {
 	return isDoubleTile;
 }
@@ -82,4 +82,20 @@ void tile::swapPips()
 	int temp = leftPips;
 	leftPips = rightPips;
 	rightPips = temp;
+}
+
+bool tile::operator==(const tile& t)
+{
+	if (this->leftPips == t.getLeftPips() && this->rightPips == t.getRightPips())
+	{
+		return true;
+	}
+	else if (this->leftPips == t.getRightPips() && this->rightPips == t.getLeftPips())
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }

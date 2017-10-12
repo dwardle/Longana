@@ -119,6 +119,7 @@
     <ClCompile Include="layoutView.cpp" />
     <ClCompile Include="Longana_Main.cpp" />
     <ClCompile Include="player.cpp" />
+    <ClCompile Include="round.cpp" />
     <ClCompile Include="stock.cpp" />
     <ClCompile Include="tile.cpp" />
     <ClCompile Include="tournament.cpp" />
@@ -131,6 +132,7 @@
     <ClInclude Include="layout.h" />
     <ClInclude Include="layoutView.h" />
     <ClInclude Include="player.h" />
+    <ClInclude Include="round.h" />
     <ClInclude Include="stock.h" />
     <ClInclude Include="tile.h" />
     <ClInclude Include="tournament.h" />

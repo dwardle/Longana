@@ -6,8 +6,8 @@ using namespace std;
 
 stock::stock()
 {
-	createBoneyard();
-	shuffleBoneyard();
+	//createBoneyard();
+	//shuffleBoneyard();
 }
 
 
@@ -43,4 +43,9 @@ tile stock::drawTile()
 	//int boneyardCap = boneyard.capacity();
 	boneyard.erase(boneyard.begin());
 	return temp;
+}
+
+bool stock::isEmpty()
+{
+	return boneyard.empty();
 }

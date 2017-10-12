@@ -14,6 +14,7 @@ public:
 	void createBoneyard();
 	void shuffleBoneyard();
 	tile drawTile();
+	bool isEmpty();
 private:
 	vector<tile> boneyard;
 	

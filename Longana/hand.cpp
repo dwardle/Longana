@@ -34,7 +34,7 @@ void hand::removeTile(tile handTile)
 			 handTiles.erase(it);
 		 }
 	}
-	system("pause");
+	//system("pause");
 }
 
 
