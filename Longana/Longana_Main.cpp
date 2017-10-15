@@ -11,11 +11,26 @@ int main()
 	//testing tile functions
 	
 	game testGame;
+	//stock temp;
 	testGame.startGame();
+	//temp = testGame.getBoneyard();
+	//testGame.drawLayout(temp.getStock());
 	testGame.beginTourn();
+	testGame.playEngine();
+	testGame.drawLayout();
 	testGame.playGame();
-	//testGame.setLayout();
-	//testGame.drawLayout();
+	testGame.drawLayout();
+	testGame.playGame();
+	testGame.drawLayout();
+	testGame.playGame();
+	testGame.drawLayout();
+	testGame.playGame();
+	testGame.drawLayout();
+	testGame.playGame();
+	testGame.drawLayout();
+	/*testGame.playGame();
+	testGame.setLayout();
+	testGame.drawLayout();*/
 
 
 	system("Pause");

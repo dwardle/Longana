@@ -8,6 +8,11 @@ round::round()
 	//boneyard.createBoneyard();
 }
 
+round::round(int rNum)
+{
+	roundNum = rNum;
+}
+
 
 round::~round()
 {
@@ -31,8 +36,8 @@ void round::roundStart(human h_Player, computer c_Player)
 
 void round::roundStart(human& h_Player, computer& c_Player, stock& b_yard)
 {
-	//b_yard.shuffleBoneyard();
-	//engine.setPips(6, 6);
+	cout << "Round " << roundNum << " start" << endl << endl;
+	cout << "Players draw their hands from the boneyard" << endl << endl;
 	for (int i = 0; i < 8; i++)
 	{
 		h_Player.drawTile(b_yard);
@@ -44,6 +49,21 @@ void round::roundStart(human& h_Player, computer& c_Player, stock& b_yard)
 	{
 		h_Player.drawTile(b_yard);
 		c_Player.drawTile(b_yard);
+	}
+
+	if (h_Player.hasEngine(engine))
+	{
+		h_Player.setHumanTurn(true);
+		c_Player.setComputerTurn(false);
+		cout << "Human player has the engine" << endl;
+		cout << "Human player places the engine tile" << endl;
+	}
+	else
+	{
+		c_Player.setComputerTurn(true);
+		h_Player.setHumanTurn(false);
+		cout << "Computer player has the engine tile" << endl;
+		cout << "Computer player places the engine tile" << endl;
 	}
 }
 

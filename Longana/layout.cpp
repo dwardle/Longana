@@ -4,8 +4,8 @@ using namespace std;
 
 layout::layout()
 {
-	//h_playedTiles = vector<tile>();
-	//c_playedTiles = vector<tile>();
+	//l_playedTiles = vector<tile>();
+	//r_playedTiles = vector<tile>();
 	for (int i = 0; i < 3; i++)
 	{
 		for (int j = 0; j < LAYOUT_MAX; j++)
@@ -20,94 +20,173 @@ layout::~layout()
 {
 }
 
+//void layout::setLayout()
+//{
+//	int rightSide;
+//	int leftSide;
+//
+//	if (l_playedTiles.empty() == true)
+//	{
+//return;
+//	}
+//	playedTiles[0][0] = ' ';
+//	playedTiles[0][1] = ' ';
+//	playedTiles[1][0] = 'L';
+//	playedTiles[1][1] = ' ';
+//	playedTiles[2][0] = ' ';
+//	playedTiles[2][1] = ' ';
+//	int i = 2;
+//	for each(tile t in l_playedTiles)
+//	{
+//		leftSide = t.getLeftPips();
+//		rightSide = t.getRightPips();
+//		if (t.isDouble())
+//		{
+//			playedTiles[0][i] = leftSide;
+//			playedTiles[1][i] = '|';
+//			playedTiles[2][i] = rightSide;
+//			i++;
+//			playedTiles[0][i] = ' ';
+//			playedTiles[1][i] = ' ';
+//			playedTiles[2][i] = ' ';
+//			i++;
+//		}
+//		else
+//		{
+//			playedTiles[1][i] = leftSide;
+//			i++;
+//			playedTiles[1][i] = '-';
+//			i++;
+//			playedTiles[1][i] = rightSide;
+//			i++;
+//			playedTiles[1][i] = ' ';
+//			i++;
+//		}
+//	}
+//	playedTiles[0][i] = ' ';
+//	playedTiles[0][i + 1] = ' ';
+//	playedTiles[1][i] = 'R';
+//	playedTiles[1][i + 1] = ' ';
+//	playedTiles[2][i] = ' ';
+//	playedTiles[2][i + 1] = ' ';
+//
+//	/*for (i = 0; i < 3; i++)
+//	{
+//
+//		for (int j = 0; j < LAYOUT_MAX; j++)
+//		{
+//			if (playedTiles[i][j] == '|' || playedTiles[i][j] == '-' || playedTiles[i][j] == ' ' || playedTiles[i][j] == 'L' || playedTiles[i][j] == 'R')
+//			{
+//				cout << playedTiles[i][j];
+//			}
+//			else
+//			{
+//				cout << static_cast<int>(playedTiles[i][j]);
+//			}
+//		}
+//		cout << endl;
+//	}*/
+//
+//}
+
+void layout::placeTile(char placement, tile tilePlaced)
+{
+	if (placement == 'L')
+	{
+		l_playedTiles.insert(l_playedTiles.begin(), tilePlaced);
+	}
+	else if (placement = 'R')
+	{
+		r_playedTiles.push_back(tilePlaced);
+	}
+}
+
+//void layout::getLayout(char a_layout[3][58])
+//{
+//	for (int i = 0; i < 3; i++)
+//	{
+//		for (int j = 0; j < 58; j++)
+//		{
+//			a_layout[i][j] = playedTiles[i][j];
+//		}
+//	}
+//}
+
 void layout::setLayout()
 {
-	int rightSide;
-	int leftSide;
+	totalLayout.clear();
 
-	if (h_playedTiles.empty() == true)
+	if (l_playedTiles.empty() == false)
 	{
-		return;
-	}
-	playedTiles[0][0] = ' ';
-	playedTiles[0][1] = ' ';
-	playedTiles[1][0] = 'L';
-	playedTiles[1][1] = ' ';
-	playedTiles[2][0] = ' ';
-	playedTiles[2][1] = ' ';
-	int i = 2;
-	for each(tile t in h_playedTiles)
-	{
-		leftSide = t.getLeftPips();
-		rightSide = t.getRightPips();
-		if (t.isDouble())
+		totalLayout = l_playedTiles;
+		if (r_playedTiles.empty() == false)
 		{
-			playedTiles[0][i] = leftSide;
-			playedTiles[1][i] = '|';
-			playedTiles[2][i] = rightSide;
-			i++;
-			playedTiles[0][i] = ' ';
-			playedTiles[1][i] = ' ';
-			playedTiles[2][i] = ' ';
-			i++;
-		}
-		else
-		{
-			playedTiles[1][i] = leftSide;
-			i++;
-			playedTiles[1][i] = '-';
-			i++;
-			playedTiles[1][i] = rightSide;
-			i++;
-			playedTiles[1][i] = ' ';
-			i++;
+			totalLayout.insert(totalLayout.end(), r_playedTiles.begin(), r_playedTiles.end());
 		}
 	}
-	playedTiles[0][i] = ' ';
-	playedTiles[0][i + 1] = ' ';
-	playedTiles[1][i] = 'R';
-	playedTiles[1][i + 1] = ' ';
-	playedTiles[2][i] = ' ';
-	playedTiles[2][i + 1] = ' ';
-	
-	/*for (i = 0; i < 3; i++)
+	else if (r_playedTiles.empty() == false)
 	{
+		totalLayout = r_playedTiles;
+		if (l_playedTiles.empty() == false)
+		{
+
+			totalLayout.insert(totalLayout.begin(), l_playedTiles.begin(), l_playedTiles.end());
+		}
 		
-		for (int j = 0; j < LAYOUT_MAX; j++)
-		{
-			if (playedTiles[i][j] == '|' || playedTiles[i][j] == '-' || playedTiles[i][j] == ' ' || playedTiles[i][j] == 'L' || playedTiles[i][j] == 'R')
-			{
-				cout << playedTiles[i][j];
-			}
-			else
-			{
-				cout << static_cast<int>(playedTiles[i][j]);
-			}
-		}
-		cout << endl;
-	}*/
-	
+	}
+	//vector<tile> totalLayout = l_playedTiles;
+	//totalLayout.insert(totalLayout.end(), r_playedTiles.begin(), r_playedTiles.end());
+}
+vector<tile> layout::getLayout()
+{
+	return totalLayout;
+	//totalLayout.clear();
+
+	//if (l_playedTiles.empty() == false)
+	//{
+	//	totalLayout = l_playedTiles;
+	//	if (r_playedTiles.empty() == false)
+	//	{
+	//		totalLayout.insert(totalLayout.end(), r_playedTiles.begin(), r_playedTiles.end());
+	//	}
+	//	return totalLayout;
+	//}
+	//else if (r_playedTiles.empty() == false)
+	//{
+	//	totalLayout = r_playedTiles;
+	//	if (l_playedTiles.empty() == false)
+	//	{
+	//		
+	//		totalLayout.insert(totalLayout.begin(), l_playedTiles.begin(), l_playedTiles.end());
+	//	}
+	//	return totalLayout;
+	//}
+	////vector<tile> totalLayout = l_playedTiles;
+	////totalLayout.insert(totalLayout.end(), r_playedTiles.begin(), r_playedTiles.end());
+	//return totalLayout;
 }
 
-void layout::placeTile(int a_player, tile tilePlaced)
+// dont think i need this anymore
+void layout::placeEngineTile(int a_player, tile engineTile)
 {
+	//tile tempTile = engineTile;
 	if (a_player == 0)
 	{
-		h_playedTiles.push_back(tilePlaced);
+		//l_playedTiles.clear();
+		l_playedTiles.push_back(engineTile);
 	}
-	else if (a_player = 1)
+	else if (a_player == 1)
 	{
-		c_playedTiles.push_back(tilePlaced);
+		r_playedTiles.push_back(engineTile);
 	}
 }
 
-void layout::getLayout(char a_layout[3][58])
+tile layout::getOpenLeft()
 {
-	for (int i = 0; i < 3; i++)
-	{
-		for (int j = 0; j < 58; j++)
-		{
-			a_layout[i][j] = playedTiles[i][j];
-		}
-	}
+	return totalLayout.front();
+}
+
+tile layout::getOpenRight()
+{
+	return totalLayout.back();
 }

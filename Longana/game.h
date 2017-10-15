@@ -26,6 +26,13 @@ public:
 	//testing layout
 	void setLayout();
 	void drawLayout();
+	/*void drawLayout(vector<tile> bones); this function was for testing, can remove later*/
+	stock getBoneyard();
+	void playEngine();
+	void setHumanPass(bool pass);
+	void setComputerPass(bool pass);
+	bool getHumanPass();
+	bool getComputerPass();
 
 private:
 	human humanPlayer;
@@ -38,5 +45,9 @@ private:
 	tile openLeft;
 	tile openRight;
 	int roundNum;
+	bool humanTurn;
+	bool computerTurn;
+	bool humanPass;
+	bool computerPass;
 };
 

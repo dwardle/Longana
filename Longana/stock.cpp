@@ -40,7 +40,6 @@ void stock::shuffleBoneyard()
 tile stock::drawTile()
 {
 	tile temp = boneyard[0];
-	//int boneyardCap = boneyard.capacity();
 	boneyard.erase(boneyard.begin());
 	return temp;
 }
@@ -48,4 +47,9 @@ tile stock::drawTile()
 bool stock::isEmpty()
 {
 	return boneyard.empty();
+}
+
+vector<tile> stock::getStock()
+{
+	return boneyard;
 }

@@ -12,13 +12,19 @@ public:
 	layout();
 	~layout();
 	void setLayout();
-	void placeTile(int a_player, tile tilePlaced);
-	void getLayout(char a_layout[3][58]);
+	void placeTile(char placement, tile tilePlaced);
+	//void getLayout(char a_layout[3][58]);
+	vector<tile> getLayout();
+	tile getOpenLeft();
+	tile getOpenRight();
+	void placeEngineTile(int a_player, tile engineTile);
+
 
 private:
 	stock boneyard;
-	vector<tile> h_playedTiles;
-	vector<tile> c_playedTiles;
+	vector<tile> l_playedTiles;
+	vector<tile> r_playedTiles;
+	vector<tile> totalLayout;
 	char playedTiles[3][58];
 	const int LAYOUT_MAX = 58;
 };
