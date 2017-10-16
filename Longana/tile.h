@@ -13,6 +13,7 @@ public:
 	inline tile getTile() const;
 	void swapPips();
 	bool operator==(const tile& t);
+	bool operator!=(const tile& t);
 private:
 	int leftPips;
 	int rightPips;

@@ -44,3 +44,8 @@ vector<tile> hand::getHand()
 {
 	return handTiles;
 }
+
+void hand::clearHand()
+{
+	handTiles.clear();
+}

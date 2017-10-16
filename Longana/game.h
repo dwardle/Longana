@@ -11,6 +11,7 @@
 #include<algorithm>
 #include<time.h>
 #include<iostream>
+#include<fstream>
 
 using namespace std;
 
@@ -33,6 +34,12 @@ public:
 	void setComputerPass(bool pass);
 	bool getHumanPass();
 	bool getComputerPass();
+	bool roundEnd();
+	bool tournEnd();
+	void nextRound();
+	void roundWinner();
+	int totalPips(vector<tile> loserHand);
+	void serialize();
 
 private:
 	human humanPlayer;

@@ -89,6 +89,8 @@ void layoutView::drawLayout()
 		}
 		cout << endl;
 	}
+	cout << endl;
+	//system("Pause");
 }
 
 void layoutView::clearView()

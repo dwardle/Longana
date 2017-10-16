@@ -99,3 +99,21 @@ bool tile::operator==(const tile& t)
 		return false;
 	}
 }
+
+bool tile::operator!=(const tile& t)
+{
+	return !this->operator==(t);
+}
+
+/*if (this->leftPips == t.getLeftPips() && this->rightPips == t.getRightPips())
+	{
+		return false;
+	}
+	else if (this->leftPips == t.getRightPips() && this->rightPips == t.getLeftPips())
+	{
+		return false;
+	}
+	else
+	{
+		return true;
+		}*/

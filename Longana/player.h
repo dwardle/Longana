@@ -22,7 +22,14 @@ public:
 	void removeTile(tile rTile);
 	bool canPlayTile(tile leftOpen, tile rightOpen, bool lastPlayerPass, char playerSide);
 	tile getLastTile();
+	void setScore(int newScore);
+	int getScore();
+	void setTotalScore();
+	int getTotalScore();
+	void clearHand();
 private:
 	hand playerHand;
+	int roundScore;
+	int totalScore;
 };
 

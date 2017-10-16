@@ -15,7 +15,7 @@ public:
 	tile selectTile();//tile leftOpen, tile rightOpen);//, bool lastPlayerPass);
 	tile parseTileInput(string selectedTile);
 	bool hasTile(tile selectedTile);
-	bool validatePlay(tile openTile, tile& playedTile);
+	bool validatePlay(tile openTile, tile& playedTile, char placement);
 	void setHumanTurn(bool turn);
 	bool isHumanTurn();
 	char tilePlacement();

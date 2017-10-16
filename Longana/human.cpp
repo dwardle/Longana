@@ -79,7 +79,7 @@ void human::play(layout& gameLayout, bool lastPlayerPass) //play(tile playedTile
 
 	if (placement == 'L')
 	{
-		if (validatePlay(gameLayout.getOpenLeft(), playedTile) == true)
+		if (validatePlay(gameLayout.getOpenLeft(), playedTile, 'L') == true)
 		{
 			gameLayout.placeTile(placement, playedTile);
 			removeTile(playedTile);
@@ -87,7 +87,7 @@ void human::play(layout& gameLayout, bool lastPlayerPass) //play(tile playedTile
 	}
 	else if (placement == 'R')
 	{
-		if (validatePlay(gameLayout.getOpenRight(), playedTile) == true)
+		if (validatePlay(gameLayout.getOpenRight(), playedTile, 'R') == true)
 		{
 			gameLayout.placeTile(placement, playedTile);
 			removeTile(playedTile);
@@ -95,7 +95,7 @@ void human::play(layout& gameLayout, bool lastPlayerPass) //play(tile playedTile
 	}
 }
 
-tile human::selectTile()//tile leftOpen, tile rightOpen)//, bool lastPlayerPass)
+tile human::selectTile()
 {
 	string tileString;
 	cout << "Your hand: ";
@@ -108,7 +108,6 @@ tile human::selectTile()//tile leftOpen, tile rightOpen)//, bool lastPlayerPass)
 	cout << "Please select the tile you want to play: ";
 	cin >> tileString;
 	tile selectedTile = parseTileInput(tileString);
-	//tileString.clear();
 	cin.clear();
 	cin.ignore();
 	if (hasTile(selectedTile) == false)
@@ -120,34 +119,6 @@ tile human::selectTile()//tile leftOpen, tile rightOpen)//, bool lastPlayerPass)
 		}
 	}
 
-	/*if (lastPlayerPass == true || selectedTile.isDouble() == true)
-	{
-		char placement;
-		cout << "Which side would you like to play the tile (L/R)?" << endl;
-		cout << "side: ";
-		cin >> placement;
-		if (placement == 'L' || 'l')
-		{
-			if (validatePlay(leftOpen, selectedTile) == false)
-			{
-				throw "Error: Invalid play. The tile you selected can not be played";
-			}
-			gameLayout.placeTile(placement, selectedTile);
-		}
-		else if (placement == 'R' || 'r')
-		{
-			if (validatePlay(rightOpen, selectedTile) == false)
-			{
-				throw "Error: Invalid play. The tile you selected can not be played";
-			}
-		}
-
-	}*/
-
-	/*if (validatePlay(leftOpen, selectedTile) == false)
-	{
-		throw "Error: Invalid play. The tile you selected can not be played";
-	}*/
 
 	return selectedTile;
 	//selectedTile
@@ -219,22 +190,34 @@ bool human::hasTile(tile selectedTile)
 	return false;
 }
 
-bool human::validatePlay(tile openTile, tile& playedTile)
+bool human::validatePlay(tile openTile, tile& playedTile, char placement)
 {
-	if (playedTile.getRightPips() == openTile.getLeftPips())
+	if (placement == 'L')
 	{
-		return true;
+		if (playedTile.getRightPips() == openTile.getLeftPips())
+		{
+			return true;
+		}
+		else if (playedTile.getLeftPips() == openTile.getLeftPips())
+		{
+			playedTile.swapPips();
+			return true;
+		}
 	}
-	else if (playedTile.getLeftPips() == openTile.getLeftPips())
+	else if (placement == 'R')
 	{
-		playedTile.swapPips();
-		return true;
+		if (playedTile.getLeftPips() == openTile.getRightPips())
+		{
+			return true;
+		}
+		else if (playedTile.getRightPips() == openTile.getRightPips())
+		{
+			playedTile.swapPips();
+			return true;
+		}
 	}
-	else
-	{
-		throw "Error: invalid play, you can not play that tile there";
-		return false;
-	}
+	throw "Error: invalid play, you can not play that tile there";
+	return false;
 }
 
 void human::setHumanTurn(bool turn)

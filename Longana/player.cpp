@@ -4,10 +4,14 @@ using namespace std;
 
 player::player()
 {
+	roundScore = 0;
+	totalScore = 0;
 }
 
 player::player(stock b_yard)
 {
+	roundScore = 0;
+	totalScore = 0;
 	drawHand(b_yard);
 }
 
@@ -136,7 +140,7 @@ bool player::canPlayTile(tile leftOpen, tile rightOpen, bool lastPlayerPass, cha
 		}
 		else if (playerSide == 'R')
 		{
-			if (t.getLeftPips() == right || t.getRightPips() == left)
+			if (t.getLeftPips() == right || t.getRightPips() == right)
 			{
 				return true;
 			}
@@ -160,4 +164,29 @@ bool player::canPlayTile(tile leftOpen, tile rightOpen, bool lastPlayerPass, cha
 tile player::getLastTile()
 {
 	return this->playerHand.getHand().back();
+}
+
+void player::setScore(int newScore)
+{
+	roundScore = newScore;
+}
+
+int player::getScore()
+{
+	return roundScore;
+}
+
+void player::setTotalScore()
+{
+	totalScore = roundScore + totalScore;
+}
+
+int player::getTotalScore()
+{
+	return totalScore;
+}
+
+void player::clearHand()
+{
+	playerHand.clearHand();
 }

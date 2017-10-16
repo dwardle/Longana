@@ -1,0 +1,10 @@
+Tournament Score: 100
+Round No.: 1
+
+Computer:
+   Hand:
+   Score:
+
+Human:
+   Hand:
+   Score

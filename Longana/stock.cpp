@@ -53,3 +53,8 @@ vector<tile> stock::getStock()
 {
 	return boneyard;
 }
+
+void stock::clearBoneyard()
+{
+	boneyard.clear();
+}

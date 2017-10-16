@@ -34,3 +34,21 @@ void tournament::setTournScore()
 	}
 	
 }
+
+bool tournament::tournEnd(human h_player, computer c_player)
+{
+	if (h_player.getScore() >= tournScore)
+	{
+		return true;
+	}
+	else if (c_player.getScore() >= tournScore)
+	{
+		return true;
+	}
+	return false;
+}
+
+int tournament::getTournScore()
+{
+	return tournScore;
+}

@@ -8,31 +8,29 @@ using namespace std;
 
 int main()
 {
-	//testing tile functions
-	
-	game testGame;
-	//stock temp;
-	testGame.startGame();
-	//temp = testGame.getBoneyard();
-	//testGame.drawLayout(temp.getStock());
-	testGame.beginTourn();
-	testGame.playEngine();
-	testGame.drawLayout();
-	testGame.playGame();
-	testGame.drawLayout();
-	testGame.playGame();
-	testGame.drawLayout();
-	testGame.playGame();
-	testGame.drawLayout();
-	testGame.playGame();
-	testGame.drawLayout();
-	testGame.playGame();
-	testGame.drawLayout();
-	/*testGame.playGame();
-	testGame.setLayout();
-	testGame.drawLayout();*/
+	game game1;
+	game1.startGame();
+	game1.beginTourn();
+	game1.playEngine();
+	game1.drawLayout();
 
+	game1.serialize();
 
+	while (game1.tournEnd() == false)
+	{
+		while (game1.roundEnd() == false)
+		{
+			game1.playGame();
+			game1.drawLayout();
+		}
+		game1.roundWinner();
+		if (game1.tournEnd() == false)
+		{
+			game1.nextRound();
+			game1.playEngine();
+			game1.drawLayout();
+		}	
+	}
 	system("Pause");
 	return 0;
 }
