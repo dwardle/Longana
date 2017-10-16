@@ -15,6 +15,7 @@ public:
 	void removeTile(tile handTile);
 	vector<tile> getHand();
 	void clearHand();
+	void setHand(vector<tile> newHand);
 	/*void drawTile(stock b_yard);*/
 private:
 	vector<tile> handTiles;

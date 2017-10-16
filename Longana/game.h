@@ -40,6 +40,9 @@ public:
 	void roundWinner();
 	int totalPips(vector<tile> loserHand);
 	void serialize();
+	void saveGame();
+	void loadGame();
+	vector<tile> parseTileString(string tString);
 
 private:
 	human humanPlayer;

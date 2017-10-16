@@ -18,6 +18,9 @@ public:
 	tile getOpenLeft();
 	tile getOpenRight();
 	void placeEngineTile(int a_player, tile engineTile);
+	string getLayoutString();
+	void setTotalLayout(vector<tile> layoutTiles);
+	void splitLayout(tile engine);
 
 
 private:

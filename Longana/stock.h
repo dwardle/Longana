@@ -17,6 +17,8 @@ public:
 	bool isEmpty();
 	void clearBoneyard();
 	vector<tile> getStock();
+	string getBoneyardString();
+	void setBoneYard(vector<tile> newBoneyard);
 private:
 	vector<tile> boneyard;
 	

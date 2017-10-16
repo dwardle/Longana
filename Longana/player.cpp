@@ -166,7 +166,7 @@ tile player::getLastTile()
 	return this->playerHand.getHand().back();
 }
 
-void player::setScore(int newScore)
+void player::setRoundScore(int newScore)
 {
 	roundScore = newScore;
 }
@@ -181,6 +181,11 @@ void player::setTotalScore()
 	totalScore = roundScore + totalScore;
 }
 
+void player::setTotalScore(int tScore)
+{
+	totalScore = tScore;
+}
+
 int player::getTotalScore()
 {
 	return totalScore;
@@ -189,4 +194,23 @@ int player::getTotalScore()
 void player::clearHand()
 {
 	playerHand.clearHand();
+}
+
+string player::handString()
+{
+	string handTiles = "";
+	for each (tile t in playerHand.getHand())
+	{
+		handTiles += (t.getLeftPips() + 48);// +' ' + t.getRightPips();
+		handTiles += "-";
+		handTiles += (t.getRightPips() + 48);
+		handTiles += " ";
+		//cout << handTiles;
+	}
+	return handTiles;
+}
+
+void player::setHand(vector<tile> newHand)
+{
+	playerHand.setHand(newHand);
 }

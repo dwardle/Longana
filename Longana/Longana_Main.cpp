@@ -10,11 +10,13 @@ int main()
 {
 	game game1;
 	game1.startGame();
-	game1.beginTourn();
-	game1.playEngine();
-	game1.drawLayout();
 
-	game1.serialize();
+	//game1.beginTourn();
+	//game1.playEngine();
+	//game1.drawLayout();
+	//game1.saveGame();
+
+	//game1.serialize();
 
 	while (game1.tournEnd() == false)
 	{
@@ -22,6 +24,7 @@ int main()
 		{
 			game1.playGame();
 			game1.drawLayout();
+			game1.saveGame();
 		}
 		game1.roundWinner();
 		if (game1.tournEnd() == false)
@@ -29,6 +32,7 @@ int main()
 			game1.nextRound();
 			game1.playEngine();
 			game1.drawLayout();
+			game1.saveGame();
 		}	
 	}
 	system("Pause");

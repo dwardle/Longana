@@ -11,6 +11,7 @@ public:
 	void startTourn();
 	int getTournScore();
 	void setTournScore();
+	void setTournScore(int tScore);
 	bool tournEnd(human h_player, computer c_player);
 
 

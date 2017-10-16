@@ -35,6 +35,11 @@ void tournament::setTournScore()
 	
 }
 
+void tournament::setTournScore(int tScore)
+{
+	tournScore = tScore;
+}
+
 bool tournament::tournEnd(human h_player, computer c_player)
 {
 	if (h_player.getScore() >= tournScore)

@@ -190,3 +190,47 @@ tile layout::getOpenRight()
 {
 	return totalLayout.back();
 }
+
+string layout::getLayoutString()
+{
+	string layoutTiles;
+	layoutTiles += "L ";
+	for each (tile t in totalLayout)
+	{
+		layoutTiles += (t.getLeftPips() + 48);
+		layoutTiles += "-";
+		layoutTiles += (t.getRightPips() + 48);
+		layoutTiles += " ";
+	}
+	layoutTiles += "R";
+	return layoutTiles;
+}
+
+void layout::setTotalLayout(vector<tile> layoutTiles)
+{
+	totalLayout = layoutTiles;
+}
+
+void layout::splitLayout(tile engine)
+{
+	bool pastEngine = false;
+	if (totalLayout.empty() == true)
+	{
+		return;
+	}
+	for each (tile t in totalLayout)
+	{
+		if (pastEngine == false)
+		{
+			l_playedTiles.push_back(t);
+			if (t == engine)
+			{
+				pastEngine = true;
+			}
+		}
+		else
+		{
+			r_playedTiles.push_back(t);
+		}
+	}
+}

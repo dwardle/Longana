@@ -58,3 +58,21 @@ void stock::clearBoneyard()
 {
 	boneyard.clear();
 }
+
+string stock::getBoneyardString()
+{
+	string boneyardTiles;
+	for each(tile t in boneyard)
+	{
+		boneyardTiles += (t.getLeftPips() + 48);
+		boneyardTiles += "-";
+		boneyardTiles += (t.getRightPips() + 48);
+		boneyardTiles += " ";
+	}
+	return boneyardTiles;
+}
+
+void stock::setBoneYard(vector<tile> newBoneyard)
+{
+	boneyard = newBoneyard;
+}

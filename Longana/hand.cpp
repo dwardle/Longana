@@ -49,3 +49,8 @@ void hand::clearHand()
 {
 	handTiles.clear();
 }
+
+void hand::setHand(vector<tile> newHand)
+{
+	handTiles = newHand;
+}

@@ -58,14 +58,14 @@ void round::roundStart(human& h_Player, computer& c_Player, stock& b_yard)
 		h_Player.setHumanTurn(true);
 		c_Player.setComputerTurn(false);
 		cout << "Human player has the engine" << endl;
-		cout << "Human player places the engine tile" << endl << endl;
+		//cout << "Human player places the engine tile" << endl << endl;
 	}
 	else
 	{
 		c_Player.setComputerTurn(true);
 		h_Player.setHumanTurn(false);
 		cout << "Computer player has the engine tile" << endl;
-		cout << "Computer player places the engine tile" << endl << endl;
+		//cout << "Computer player places the engine tile" << endl << endl;
 	}
 }
 

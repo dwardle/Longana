@@ -43,7 +43,7 @@ void computer::play(layout& gameLayout, bool lastPlayerPass)
 			}
 			gameLayout.placeTile(placement, playedTile);
 			cout << "Computer played " << playedTile.getLeftPips() << "-" << playedTile.getRightPips();
-			cout << " to the right of the layout" << endl;
+			cout << " to the right of the layout" << endl << endl;
 		}
 		else if (placement == 'L')
 		{
@@ -53,7 +53,7 @@ void computer::play(layout& gameLayout, bool lastPlayerPass)
 			}
 			gameLayout.placeTile(placement, playedTile);
 			cout << "Computer played " << playedTile.getLeftPips() << "-" << playedTile.getRightPips();
-			cout << " to the left of the layout" << endl;
+			cout << " to the left of the layout" << endl << endl;
 		}
 		removeTile(playedTile);
 	}
