@@ -11,16 +11,15 @@ class stock
 public:
 	stock();
 	~stock();
+	vector<tile> getStock();
+	string getBoneyardString();
+	bool isEmpty();
+	void setBoneYard(vector<tile> newBoneyard);
+	void clearBoneyard();
 	void createBoneyard();
 	void shuffleBoneyard();
 	tile drawTile();
-	bool isEmpty();
-	void clearBoneyard();
-	vector<tile> getStock();
-	string getBoneyardString();
-	void setBoneYard(vector<tile> newBoneyard);
 private:
 	vector<tile> boneyard;
-	
 };
 

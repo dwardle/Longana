@@ -11,12 +11,11 @@ class hand
 public:
 	hand();
 	~hand();
+	vector<tile> getHand();
+	void setHand(vector<tile> newHand);
 	void addTile(tile newTile);
 	void removeTile(tile handTile);
-	vector<tile> getHand();
 	void clearHand();
-	void setHand(vector<tile> newHand);
-	/*void drawTile(stock b_yard);*/
 private:
 	vector<tile> handTiles;
 };

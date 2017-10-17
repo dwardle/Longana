@@ -11,13 +11,6 @@ int main()
 	game game1;
 	game1.startGame();
 
-	//game1.beginTourn();
-	//game1.playEngine();
-	//game1.drawLayout();
-	//game1.saveGame();
-
-	//game1.serialize();
-
 	while (game1.tournEnd() == false)
 	{
 		while (game1.roundEnd() == false)
@@ -33,7 +26,11 @@ int main()
 			game1.playEngine();
 			game1.drawLayout();
 			game1.saveGame();
-		}	
+		}
+		else
+		{
+			game1.endTourn();
+		}
 	}
 	system("Pause");
 	return 0;

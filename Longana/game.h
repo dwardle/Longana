@@ -20,24 +20,22 @@ class game
 public:
 	game();
 	~game();
-	void startGame();
-	void beginTourn();
-	void playGame();
-
-	//testing layout
-	void setLayout();
-	void drawLayout();
-	/*void drawLayout(vector<tile> bones); this function was for testing, can remove later*/
 	stock getBoneyard();
-	void playEngine();
-	void setHumanPass(bool pass);
-	void setComputerPass(bool pass);
 	bool getHumanPass();
 	bool getComputerPass();
 	bool roundEnd();
 	bool tournEnd();
+	void setLayout();
+	void drawLayout();
+	void setHumanPass(bool pass);
+	void setComputerPass(bool pass);
+	void startGame();
+	void beginTourn();
+	void playGame();
+	void playEngine();
 	void nextRound();
 	void roundWinner();
+	void endTourn();
 	int totalPips(vector<tile> loserHand);
 	void serialize();
 	void saveGame();
@@ -45,6 +43,11 @@ public:
 	vector<tile> parseTileString(string tString);
 
 private:
+	int roundNum;
+	bool humanTurn;
+	bool computerTurn;
+	bool humanPass;
+	bool computerPass;
 	human humanPlayer;
 	computer computerPlayer;
 	stock boneYard;
@@ -54,10 +57,6 @@ private:
 	layoutView gameView;
 	tile openLeft;
 	tile openRight;
-	int roundNum;
-	bool humanTurn;
-	bool computerTurn;
-	bool humanPass;
-	bool computerPass;
+	
 };
 

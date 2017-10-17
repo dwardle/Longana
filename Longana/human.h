@@ -1,5 +1,6 @@
 #pragma once
 #include "player.h"
+#include "computer.h"
 #include<string>
 #include<sstream>
 
@@ -10,16 +11,17 @@ class human : public player
 public:
 	human();
 	~human();
-	//tile play(tile leftOpen);
-	void play(layout& gameLayout, bool lastPlayerPass);//play(tile playedTile, layout &gameLayout, char placement, bool lastPlayerPass);
-	tile selectTile();//tile leftOpen, tile rightOpen);//, bool lastPlayerPass);
-	tile parseTileInput(string selectedTile);
-	bool hasTile(tile selectedTile);
-	bool validatePlay(tile openTile, tile& playedTile, char placement);
 	void setHumanTurn(bool turn);
+	bool hasTile(tile selectedTile);
 	bool isHumanTurn();
+	void play(layout& gameLayout, computer computerPlayer, bool lastPlayerPass);
+	tile selectTile();
+	tile parseTileInput(string selectedTile);
+	bool validatePlay(tile openTile, tile& playedTile, char placement);
 	char tilePlacement();
+	void helpMode(computer computerPlayer, layout gameLayout, bool lastPlayerPass);
 private:
 	bool humanTurn;
+	bool inHelpMode;
 };
 

@@ -13,7 +13,6 @@ public:
 	~layout();
 	void setLayout();
 	void placeTile(char placement, tile tilePlaced);
-	//void getLayout(char a_layout[3][58]);
 	vector<tile> getLayout();
 	tile getOpenLeft();
 	tile getOpenRight();
@@ -21,8 +20,7 @@ public:
 	string getLayoutString();
 	void setTotalLayout(vector<tile> layoutTiles);
 	void splitLayout(tile engine);
-
-
+	void clearLayout();
 private:
 	stock boneyard;
 	vector<tile> l_playedTiles;

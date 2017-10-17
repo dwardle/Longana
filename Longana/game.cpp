@@ -36,13 +36,13 @@ void game::startGame()
 			playEngine();
 			drawLayout();
 			saveGame();
-			break;
+			return;
 		}
 		else if (choice == 'L')
 		{
 			loadGame();
 			drawLayout();
-			break;
+			return;
 		}
 		else
 		{
@@ -58,8 +58,6 @@ void game::beginTourn()
 	tournRound.setEngine(roundNum);
 	tournRound.roundStart(humanPlayer, computerPlayer, boneYard);
 	saveGame();
-	//ask if player wants to serialize here
-
 	openLeft = tournRound.getEngine();
 	openRight = tournRound.getEngine();
 }
@@ -107,7 +105,7 @@ void game::playGame()
 			try
 			{
 				exceptionThrow = false;
-				humanPlayer.play(gameLayout, computerPass);
+				humanPlayer.play(gameLayout, computerPlayer, computerPass);
 				setHumanPass(false);
 				humanPlayer.setHumanTurn(false);
 				tournRound.setNumPasses(0);
@@ -221,7 +219,7 @@ void game::playEngine()
 void game::nextRound()
 {
 	roundNum++;
-	tournRound.setRoundNum(roundNum + 1);
+	tournRound.setRoundNum(roundNum);
 	boneYard.clearBoneyard();
 	boneYard.createBoneyard();
 	boneYard.shuffleBoneyard();
@@ -233,15 +231,12 @@ void game::nextRound()
 	setComputerPass(false);
 	humanPlayer.setHumanTurn(false);
 	computerPlayer.setComputerTurn(false);
+	gameLayout.clearLayout();
 	tournRound.setEngine(roundNum);
 	tournRound.roundStart(humanPlayer, computerPlayer, boneYard);
 	openLeft = tournRound.getEngine();
 	openRight = openLeft;
-
 }
-
-
-
 
 void game::setHumanPass(bool pass)
 {
@@ -494,6 +489,8 @@ void game::loadGame()
 	getline(iss, token, 'R');
 	gameLayout.setTotalLayout(parseTileString(token));
 	gameLayout.splitLayout(tournRound.getEngine());
+	openLeft = gameLayout.getOpenLeft();
+	openRight = gameLayout.getOpenRight();
 	
 	//get Boneyard
 	getline(iss, token, ':');
@@ -558,4 +555,49 @@ vector<tile> game::parseTileString(string tString)
 		tiles.push_back(tempTile);
 	}
 	return tiles;
+}
+
+void game::endTourn()
+{
+	if (humanPlayer.getTotalScore() > computerPlayer.getTotalScore())
+	{
+		cout << "Tournament End" << endl << endl;
+		cout << "Human player wins the tournament" << endl;
+		cout << "Human Score: " << humanPlayer.getTotalScore() << endl << endl << endl;
+	}
+	else if(computerPlayer.getTotalScore() > humanPlayer.getTotalScore())
+	{
+		cout << "Tournament End" << endl << endl;
+		cout << "Computer player wins the tournament" << endl;
+		cout << "Computer Score: " << computerPlayer.getTotalScore() << endl << endl << endl;
+	}
+
+	cout << "Would you like to start a new tournament?(Y/N): ";
+	char choice;
+	cin >> choice;
+	choice = toupper(choice);
+	if (choice == 'Y')
+	{
+		roundNum = 1;
+		tourn.setTournScore(-1);
+		humanPlayer.clearHand();
+		humanPlayer.setTotalScore(0);
+		humanPlayer.setRoundScore(0);
+		computerPlayer.clearHand();
+		computerPlayer.setTotalScore(0);
+		computerPlayer.setRoundScore(0);
+		boneYard.clearBoneyard();
+		boneYard.createBoneyard();
+		boneYard.shuffleBoneyard();
+		gameLayout.clearLayout();
+		beginTourn();
+		playEngine();
+		drawLayout();
+		saveGame();
+	}
+	else if(choice == 'N')
+	{
+		cout << endl << "Game exiting" << endl;
+		system("Pause");
+	}
 }

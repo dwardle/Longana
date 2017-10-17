@@ -1,4 +1,4 @@
-Tournament Score: 100
+Tournament Score: 1
 Round No.: 1
 
 Computer:
@@ -6,7 +6,7 @@ Computer:
    Score: 0
 
 Human: 
-   Hand: 0-1 0-0 1-1 2-5 2-3 2-4 4-4 
+   Hand: 2-3 
    Score: 0
 
 Layout:

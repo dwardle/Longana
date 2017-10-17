@@ -6,6 +6,7 @@ using namespace std;
 human::human()
 {
 	humanTurn = false;
+	inHelpMode = false;
 }
 
 
@@ -14,86 +15,52 @@ human::~human()
 }
 
 
-//right now the player can select a tile from his hand and it will check the player hand to make sure they have that tile
-//the string entered will be parsed for digits, this means that anything the player enters that is not a number will be ignored
-//this allows the function to also validate the at the tile entered is actually a valid tile entry, meaning it has 2 numbers representing the
-//pips on the left and right of the tile.
-//Still need to validate if the tile can be played or not. 
-//tile human::play(tile leftOpen)
-//{
-//	string tileString;
-//	cout << "Your hand: ";
-//	for each (tile t in getHand2())
-//	{
-//		cout << t.getLeftPips() << '-' << t.getRightPips();
-//		cout << " ";
-//	}
-//	cout << endl;
-//	cout << "Please select the tile you want to play: ";
-//	cin >> tileString;
-//	tile selectedTile = parseTileInput(tileString);
-//	//tileString.clear();
-//	cin.clear();
-//	if (hasTile(selectedTile) == false)
-//	{
-//		selectedTile.swapPips();
-//		if (hasTile(selectedTile) == false)
-//		{
-//			throw "Error: Invalid input. you either do not have that tile or entered the tile incorrectly";
-//		}
-//		
-//		//cout << "Invalid input. you either do not have the tile entered or entered the tile incorrectly" << endl;
-//		//cout << "Please try again" << endl << endl;
-//
-//		//cout << "Please select the tile you want to play: ";
-//		//cin >> tileString;
-//		//selectedTile = parseTileInput(tileString);
-//		////tileString.clear();
-//		//cin.clear();
-//	}
-//
-//	if (validatePlay(leftOpen, selectedTile) == false)
-//	{
-//		throw "Error: Invalid play. The tile you selected can not be played";
-//	}
-//
-//	return selectedTile;
-//	//selectedTile
-//}
-
-
 //need to fix this. I want this function to be able to call selectTile, tilePlacement, and validatePlay. then call gameLayout.placeTile. validate play might
 //need to be changed to check if the player is allowed to play on the side they choose
-void human::play(layout& gameLayout, bool lastPlayerPass) //play(tile playedTile, layout &gameLayout, char placement, bool lastPlayerPass)
+void human::play(layout& gameLayout, computer computerPlayer, bool lastPlayerPass) //play(tile playedTile, layout &gameLayout, char placement, bool lastPlayerPass)
 {
-	tile playedTile = selectTile();
-	char placement;
-	if (playedTile.isDouble() || lastPlayerPass == true)
+	
+	while (true)
 	{
-		placement = tilePlacement();
-	}
-	else
-	{
-		placement = 'L';
-	}
+		tile playedTile = selectTile();
+		if (inHelpMode == false)
+		{
+			char placement;
+			if (playedTile.isDouble() || lastPlayerPass == true)
+			{
+				placement = tilePlacement();
+			}
+			else
+			{
+				placement = 'L';
+			}
 
-	if (placement == 'L')
-	{
-		if (validatePlay(gameLayout.getOpenLeft(), playedTile, 'L') == true)
-		{
-			gameLayout.placeTile(placement, playedTile);
-			removeTile(playedTile);
+			if (placement == 'L')
+			{
+				if (validatePlay(gameLayout.getOpenLeft(), playedTile, 'L') == true)
+				{
+					gameLayout.placeTile(placement, playedTile);
+					removeTile(playedTile);
+				}
+			}
+			else if (placement == 'R')
+			{
+				if (validatePlay(gameLayout.getOpenRight(), playedTile, 'R') == true)
+				{
+					gameLayout.placeTile(placement, playedTile);
+					removeTile(playedTile);
+				}
+			}
+			break;
 		}
-	}
-	else if (placement == 'R')
-	{
-		if (validatePlay(gameLayout.getOpenRight(), playedTile, 'R') == true)
+		else
 		{
-			gameLayout.placeTile(placement, playedTile);
-			removeTile(playedTile);
+			helpMode(computerPlayer, gameLayout, lastPlayerPass);
+			inHelpMode = false;
 		}
 	}
 }
+	
 
 tile human::selectTile()
 {
@@ -107,6 +74,12 @@ tile human::selectTile()
 	cout << endl;
 	cout << "Please select the tile you want to play: ";
 	cin >> tileString;
+	if (tileString == "h" || tileString == "help")
+	{
+		inHelpMode = true;
+		cin.clear();
+		return tile();
+	}
 	tile selectedTile = parseTileInput(tileString);
 	cin.clear();
 	cin.ignore();
@@ -115,7 +88,7 @@ tile human::selectTile()
 		selectedTile.swapPips();
 		if (hasTile(selectedTile) == false)
 		{
-			throw "Error: Invalid input. you either do not have that tile or entered the tile incorrectly";
+			throw "Error: Invalid input. you either do not have that tile or entered the tile incorrectly. type h or help to get help from the computer";
 		}
 	}
 
@@ -228,4 +201,10 @@ void human::setHumanTurn(bool turn)
 bool human::isHumanTurn()
 {
 	return humanTurn;
+}
+
+void human::helpMode(computer computerPlayer, layout gameLayout, bool lastPlayerPass)
+{
+	cout << "Help mode entered" << endl << endl;
+	computerPlayer.helpHuman(getHand2(), gameLayout, lastPlayerPass);
 }

@@ -10,12 +10,10 @@ class layoutView
 public:
 	layoutView();
 	~layoutView();
-	//void drawLayout(char gameLayout[][58]);
-	void drawLayout();
 	void setLayoutView(vector<tile> gameBoard);
 	void clearView();
+	void drawLayout();
 private:
 	char gameView[3][101];
-	//char emptyView[3][101];
 };
 

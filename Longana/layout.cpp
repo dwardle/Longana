@@ -140,30 +140,6 @@ void layout::setLayout()
 vector<tile> layout::getLayout()
 {
 	return totalLayout;
-	//totalLayout.clear();
-
-	//if (l_playedTiles.empty() == false)
-	//{
-	//	totalLayout = l_playedTiles;
-	//	if (r_playedTiles.empty() == false)
-	//	{
-	//		totalLayout.insert(totalLayout.end(), r_playedTiles.begin(), r_playedTiles.end());
-	//	}
-	//	return totalLayout;
-	//}
-	//else if (r_playedTiles.empty() == false)
-	//{
-	//	totalLayout = r_playedTiles;
-	//	if (l_playedTiles.empty() == false)
-	//	{
-	//		
-	//		totalLayout.insert(totalLayout.begin(), l_playedTiles.begin(), l_playedTiles.end());
-	//	}
-	//	return totalLayout;
-	//}
-	////vector<tile> totalLayout = l_playedTiles;
-	////totalLayout.insert(totalLayout.end(), r_playedTiles.begin(), r_playedTiles.end());
-	//return totalLayout;
 }
 
 // dont think i need this anymore
@@ -233,4 +209,11 @@ void layout::splitLayout(tile engine)
 			r_playedTiles.push_back(t);
 		}
 	}
+}
+
+void layout::clearLayout()
+{
+	totalLayout.clear();
+	l_playedTiles.clear();
+	r_playedTiles.clear();
 }
